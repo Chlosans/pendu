@@ -1,22 +1,150 @@
-.App {
+
+
+body{
+  height: 100vh;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+body *{
+  font-family: sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1{
+  padding-top: 50px;
+  text-align: center;
+  font-size: 70px;
 }
 
-.App-link {
-  color: #09d3ac;
+#play_new_game , .modeJeu button{
+  background: transparent;
+  border: 5px double black;
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+
+/*
+*
+*	NOMBRE DE TENTATIVES
+*
+*/
+#life{
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+#life .heart.empty{
+  opacity: 0.3;
+}
+
+.heart {
+  background-color: black;
+  display: inline-block;
+  height: 20px;
+  margin: 0 10px;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 20px;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: black;
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+}
+
+.heart:before {
+  top: -10px;
+  left: 0;
+}
+
+.heart:after {
+  left: 10px;
+  top: 0;
+}
+
+/*
+*
+*	Message de fin de jeu
+*
+*/
+#win_message{
+  font-size: 40px;
+  color: green;
+  padding: 30px;
+}
+#lost_message{
+  font-size: 40px;
+  color: red;
+  padding: 30px;
+}
+
+/*
+*
+*	Masque de mots à trouver
+*
+*/
+#wrapper_new_word{
+  border: 1px solid transparent;
+  width: auto;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#wrapper_new_word span{
+  display: inline-block;
+  border-bottom: 3px solid black;
+  font-size: 40px;
+  padding: 5px 20px;
+  color: black;
+  margin: 0 5px;
+}
+
+#wrapper_new_word span.notfinded{
+  color: rgba(0,0,0,0.3);
+}
+
+#wrapper_new_word span.lost{
+  color: black;
+}
+
+#wrapper_new_word::after{
+  clear: both;
+  content: " ";
+  min-height: 1px;
+  display:block;
+}
+
+/*
+*
+*	Keyboard
+*
+*/
+#keyboard{
+  border: 1px solid transparent;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+#keyboard button{
+  color: black;
+  background: transparent;
+  border: none;
+  font-size: 40px;
+  padding: 5px 20px;
+  cursor:pointer;
+}
+
+#keyboard .used{
+  opacity: 0.3;
 }
