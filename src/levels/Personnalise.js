@@ -4,13 +4,18 @@ import Keyboard from "../Keyboard";
 import CurrentWord from '../CurrentWord'
 import Heart from '../Heart'
 import App from "../App";
+import TakeValue from "./TakeValue";
+
+import Context from "./provider/context";
 
 class Personnalise extends Component {
+
+    static contextType = Context
 
     //Le state avec toutes les propriétés nécessaires au composant
     state = {
         //liste de mots
-        wordCollection: ["programmation","wordpress", "gare", "train", "glace", "code", "licorne","table","maison","dix"],
+        wordCollection: "",
         //La lettre sur lequel le joueur vient de cliquer
         currentWord: null,
         //Keyboard
@@ -23,7 +28,7 @@ class Personnalise extends Component {
         //Nombre de coups réalisé
         attempt: 0,
         //Nombre de coups maximum
-        maxAttempt: 5,
+        maxAttempt: "",
         //Position dans le site
         levelType: "personnalise",
     }
@@ -64,7 +69,7 @@ class Personnalise extends Component {
             }
 
             //Si le nombre de coups est supérieur au nombre de coups max : le joueur a perdu
-            if (attempt >= this.state.maxAttempt && win === 0) {
+            if (attempt >= this.context.attempt && win === 0) {
                 win = -1
             }
 
@@ -81,20 +86,25 @@ class Personnalise extends Component {
     }
 
     //Choisir un mot aléatoirement dans la liste de mots
-    pickNewWord = () => {
-        const randomIndex = Math.floor(Math.random() * this.state.wordCollection.length)
-        return this.state.wordCollection[randomIndex]
+    pickNewWord = (value) => {
+        const randomIndex = Math.floor(Math.random() * this.context.arrayWorld.length)
+        return this.context.arrayWorld[randomIndex]
+
+        console.log(value)
     }
 
     //Nouvelle partie
     launchNewGame = () => {
 
         this.setState({
-            currentWord: this.pickNewWord(),
+            currentWord: this.pickNewWord('ok'),
             usedLetter: [],
             win: 0,
             attempt: 0
         })
+    }
+
+    componentDidUpdate() {
 
     }
 
@@ -108,12 +118,13 @@ class Personnalise extends Component {
                         </button>
                         <h1>Jeu du pendu</h1>
 
+
                         {
                             //Nombre de vies
                             (this.state.currentWord !== null) &&
                             <Heart
                                 attempt={this.state.attempt}
-                                maxAttempt={this.state.maxAttempt}
+                                maxAttempt={this.context.attempt}
                             />
                         }
 
@@ -156,13 +167,17 @@ class Personnalise extends Component {
                         }
                         {
                             (this.state.currentWord === null) &&
-                            <p>Explications du mode</p>
+                            <p>Bonjour ! Bienvenue dans le mode Personnalisé. Dans ce mode, vous pouvez choisir les mots à trouver. Vous choisissez également le nombre de tentatives maximum possible.</p>
 
+                        }
+                        {
+                            (this.state.currentWord === null) &&
+                            <TakeValue/>
                         }
 
                         {
                             //Nouvelle partie
-                            (this.state.currentWord === null ) &&
+                            (this.state.currentWord === null && this.context.estrempli === true) &&
                             <button id="play_new_game" onClick={() => this.launchNewGame()}>Nouvelle partie</button>
 
                         }

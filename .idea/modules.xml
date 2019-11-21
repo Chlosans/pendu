@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Documents/BDDI/react/Synthese/calculate-useReduce-context/.idea/calculate-useReduce-context.iml" filepath="$USER_HOME$/Documents/BDDI/react/Synthese/calculate-useReduce-context/.idea/calculate-useReduce-context.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pendu.iml" filepath="$PROJECT_DIR$/.idea/pendu.iml" />
-      <module fileurl="file://$USER_HOME$/Downloads/pendu-app/.idea/pendu-app.iml" filepath="$USER_HOME$/Downloads/pendu-app/.idea/pendu-app.iml" />
     </modules>
   </component>
 </project>

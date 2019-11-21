@@ -8,6 +8,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="pendu-app" />
+    <orderEntry type="module" module-name="calculate-useReduce-context" />
   </component>
 </module>

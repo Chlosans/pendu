@@ -10,8 +10,8 @@ class Bddi extends Component {
     //Le state avec toutes les propriétés nécessaires au composant
     state = {
         //liste de mots
-        wordCollection: ["programmation","wordpress", "gare", "train", "glace", "code", "licorne","table","maison","dix"],
-        //La lettre sur lequel le joueur vient de cliquer
+        wordCollection: ["republique ","biere","antoine","slack","mcdonalds","football",'rhinoshield'],
+        explicationWordCollection :["Place à Paris où les BDDI se retrouvent pour jouir d’un happy hour du tonnerre de dieu.","Boisson alcoolisé prises par les étudiants de cette promotion de manière régulière.","Professeur présent durant 2 semaines consécutives pour l’apprentissage de React. XXXX, ça va ?","C’est le moyen de communication de notre promotion. ","Lieu de consommation excessivement gras mais pas cher grâce à une promotion : 2 bestOf pour le prix d’un ! PS : demander à Luc","Sport souvent pratiqué durant les pauses des développeurs","Coque de téléphone assez réputée pour sa solidité"],
         currentWord: null,
         //Keyboard
         //La méthode split() permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes.
@@ -82,8 +82,9 @@ class Bddi extends Component {
 
     //Choisir un mot aléatoirement dans la liste de mots
     pickNewWord = () => {
-        const randomIndex = Math.floor(Math.random() * this.state.wordCollection.length)
-        return this.state.wordCollection[randomIndex]
+        this.randomIndex = Math.floor(Math.random() * this.state.wordCollection.length)
+        return this.state.wordCollection[this.randomIndex]
+
     }
 
     //Nouvelle partie
@@ -150,6 +151,12 @@ class Bddi extends Component {
                         }
 
                         {
+                            //explication mot
+                            (this.state.win === 1 || this.state.win === -1) &&
+                            <p id="explication_mot">{this.state.explicationWordCollection[this.randomIndex]}</p>
+                        }
+
+                        {
                             (this.state.currentWord === null ) &&
                             <h3>BDDI</h3>
 
@@ -167,7 +174,7 @@ class Bddi extends Component {
 
                         }
                         {
-                            //RMots suivant
+                            //Mots suivant
                             (this.state.win !== 0) &&
                             <button id="play_new_game" onClick={() => this.launchNewGame()}>Mot suivant</button>
 
