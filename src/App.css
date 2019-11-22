@@ -1,46 +1,62 @@
-
-
-body{
+body {
   height: 100vh;
   text-align: center;
+  background: radial-gradient(ellipse at center, #ffa372 30%, #BC335C 100%);
+  overflow: hidden;
 }
 
-body *{
+body * {
   font-family: sans-serif;
+  color: #fff;
+  font-family: 'Poiret One',
+    cursive;
 }
 
-h1{
-  padding-top: 50px;
+h1 {
   text-align: center;
-  font-size: 70px;
+  margin-top: 25vh;
+  margin-bottom: 6.5vh;
+  font-size: 3.5rem;
 }
 
-#play_new_game , .modeJeu button{
+h3 {
+  font-size: 1.75rem;
+}
+
+#game {
+  margin: 0 20%;
+}
+
+
+#play_new_game,
+.modeJeu button {
   background: transparent;
-  border: 5px double black;
-  font-size: 30px;
-  padding: 10px 20px;
-  margin-top: 30px;
+  padding: 30px 20px;
+  border: solid 2px #fff;
+  min-width: 215px;
+  margin: 0 1.8rem;
+  border-radius: 7px;
   cursor: pointer;
+  font-size: 1.75rem;
 }
-
 
 /*
 *
 *	NOMBRE DE TENTATIVES
 *
 */
-#life{
-  margin-top: 30px;
+#life {
+  margin-top: 25vh;
   text-align: center;
   margin-bottom: 50px;
 }
-#life .heart.empty{
+
+#life .heart.empty {
   opacity: 0.3;
 }
 
 .heart {
-  background-color: black;
+  background-color: #fff;
   display: inline-block;
   height: 20px;
   margin: 0 10px;
@@ -53,7 +69,7 @@ h1{
 .heart:before,
 .heart:after {
   content: "";
-  background-color: black;
+  background-color: #fff;
   border-radius: 50%;
   height: 20px;
   position: absolute;
@@ -75,15 +91,14 @@ h1{
 *	Message de fin de jeu
 *
 */
-#win_message{
-  font-size: 40px;
+#win_message {
+  font-size: 50px;
   color: green;
-  padding: 30px;
 }
-#lost_message{
-  font-size: 40px;
+
+#lost_message {
+  font-size: 50px;
   color: red;
-  padding: 30px;
 }
 
 /*
@@ -91,35 +106,35 @@ h1{
 *	Masque de mots à trouver
 *
 */
-#wrapper_new_word{
+#wrapper_new_word {
   border: 1px solid transparent;
   width: auto;
   text-align: center;
   margin: 0 auto;
 }
 
-#wrapper_new_word span{
+#wrapper_new_word span {
   display: inline-block;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #fff;
   font-size: 40px;
   padding: 5px 20px;
-  color: black;
+  color: #fff;
   margin: 0 5px;
 }
 
-#wrapper_new_word span.notfinded{
-  color: rgba(0,0,0,0.3);
+#wrapper_new_word span.notfinded {
+  color: rgba(0, 0, 0, 0.3);
 }
 
-#wrapper_new_word span.lost{
-  color: black;
+#wrapper_new_word span.lost {
+  color: #fff;
 }
 
-#wrapper_new_word::after{
+#wrapper_new_word::after {
   clear: both;
   content: " ";
   min-height: 1px;
-  display:block;
+  display: block;
 }
 
 /*
@@ -127,7 +142,7 @@ h1{
 *	Keyboard
 *
 */
-#keyboard{
+#keyboard {
   border: 1px solid transparent;
   width: 90%;
   max-width: 600px;
@@ -136,15 +151,173 @@ h1{
   margin-top: 30px;
 }
 
-#keyboard button{
-  color: black;
+#keyboard button {
+  color: #fff;
   background: transparent;
   border: none;
   font-size: 40px;
   padding: 5px 20px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-#keyboard .used{
+#keyboard .used {
   opacity: 0.3;
 }
+
+/* Ajout perso :*/
+
+.accueil {
+  font-family: 'Open Sans Condensed',
+    sans-serif;
+  color: #b52b65;
+  margin: auto;
+  text-align: center;
+}
+
+.accueil h1 {
+  margin-top: 20vh;
+  margin-bottom: 10vh;
+  font-size: 3rem;
+}
+
+
+
+.container {
+  display: flex;
+  margin: 0 20vw;
+  justify-content: space-between;
+}
+
+.ocean {
+  height: 5%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #BC335C;
+  z-index: -1;
+}
+
+.wave {
+  background: url("wave.svg") repeat-x;
+  position: absolute;
+  top: 198;
+  width: 6400px;
+  height: 198px;
+  -webkit-animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  opacity: 0.5;
+}
+
+.wave:nth-of-type(2) {
+  top: -172px;
+  -webkit-animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 1;
+}
+
+
+@-webkit-keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@-webkit-keyframes swell {
+
+  0%,
+  100% {
+    -webkit-transform: translate3d(0, -25px, 0);
+    transform: translate3d(0, -25px, 0);
+  }
+
+  50% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+}
+
+@keyframes swell {
+
+  0%,
+  100% {
+    -webkit-transform: translate3d(0, -25px, 0);
+    transform: translate3d(0, -25px, 0);
+  }
+
+  50% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+}
+
+.btnAccueil {
+  background: transparent;
+  padding: 30px 20px;
+  border: solid 2px #fff;
+  min-width: 150px;
+  position: absolute;
+  top: 5rem;
+  left: 3.5rem;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.btnAccueil:hover,
+.btnAccueil:focus {
+  border: dashed 2px #fff;
+}
+
+.descriptionMode {
+  margin-bottom: 5vh;
+  font-size: 1.75rem;
+}
+
+input[type=text] {
+  border: transparent;
+  background-color: #BC335C;
+  color: white;
+  padding: 10px;
+  width: 50%;
+  font-size: 1.25rem;
+}
+
+input[type=submit] {
+  border: transparent;
+  background-color: #fff;
+  color: #BC335C;
+  padding: 10px;
+  width: 100px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+
+#explication_mot {
+  font-size: 1.75rem;
+}
+
+label {
+  font-size: 1.5rem;
+}
+
+
+/* annimation css*/

@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
-import '../App.css'
-import Keyboard from "../Keyboard";
-import CurrentWord from '../CurrentWord'
-import Heart from '../Heart'
-import App from "../App";
-import TakeValue from "./TakeValue";
+import React, { Component } from "react"
+import "../App.css"
+import Keyboard from "../Keyboard"
+import CurrentWord from "../CurrentWord"
+import Heart from "../Heart"
+import App from "../App"
+import TakeValue from "./TakeValue"
 
-import Context from "./provider/context";
+import Context from "./provider/context"
 
 class Personnalise extends Component {
-
     static contextType = Context
 
     //Le state avec toutes les propriétés nécessaires au composant
@@ -20,7 +19,7 @@ class Personnalise extends Component {
         currentWord: null,
         //Keyboard
         //La méthode split() permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes.
-        alphabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toLowerCase().split(''),
+        alphabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toLowerCase().split(""),
         //Tableau qui garde en mémoire toutes les lettres sur lesquelles le joueur a cliqué
         usedLetter: [],
         //Résultat du jeu
@@ -30,12 +29,11 @@ class Personnalise extends Component {
         //Nombre de coups maximum
         maxAttempt: "",
         //Position dans le site
-        levelType: "personnalise",
+        levelType: "personnalise"
     }
 
-
     componentDidMount() {
-        window.addEventListener("keyup", (e) => {
+        window.addEventListener("keyup", e => {
             //Keycode = 13 = le bouton enter
             //Au bouton enter : une nouvelle partie commence
             if (e.keyCode === 13) {
@@ -44,9 +42,7 @@ class Personnalise extends Component {
         })
     }
 
-
-    clickLetter = (letter) => {
-
+    clickLetter = letter => {
         //Si le tableau indexOf est pas vide
         if (this.state.usedLetter.indexOf(letter) === -1) {
             //Remplir la lettre de l'utilisateur (pour prévoir les clicks multiples sur une même lettre)
@@ -60,7 +56,7 @@ class Personnalise extends Component {
             }
 
             //calcul du résultat du jeu
-            let win = 1;
+            let win = 1
             for (let i = 0; i < this.state.currentWord.length; i++) {
                 //Dans la boucle, on passe par chaque lettre du mot. Si une lettre n'est pas dans le tableau le status du jeu reste neutre
                 if (usedLetter.indexOf(this.state.currentWord[i]) === -1) {
@@ -76,7 +72,6 @@ class Personnalise extends Component {
             //update state
             this.setState({ usedLetter, attempt, win })
         }
-
     }
 
     homePage(levelType) {
@@ -86,8 +81,10 @@ class Personnalise extends Component {
     }
 
     //Choisir un mot aléatoirement dans la liste de mots
-    pickNewWord = (value) => {
-        const randomIndex = Math.floor(Math.random() * this.context.arrayWorld.length)
+    pickNewWord = value => {
+        const randomIndex = Math.floor(
+            Math.random() * this.context.arrayWorld.length
+        )
         return this.context.arrayWorld[randomIndex]
 
         console.log(value)
@@ -95,104 +92,102 @@ class Personnalise extends Component {
 
     //Nouvelle partie
     launchNewGame = () => {
-
         this.setState({
-            currentWord: this.pickNewWord('ok'),
+            currentWord: this.pickNewWord("ok"),
             usedLetter: [],
             win: 0,
             attempt: 0
         })
     }
 
-    componentDidUpdate() {
-
-    }
+    componentDidUpdate() {}
 
     render() {
         return (
             <div>
                 {this.state.levelType === "personnalise" ? (
                     <div id="game">
-                        <button onClick={() => this.homePage("App")}>
-                            Accueil
+                        <button
+                            className="btnAccueil"
+                            onClick={() => this.homePage("App")}
+                        >
+                            ACCUEIL
                         </button>
-                        <h1>Jeu du pendu</h1>
 
-
-                        {
-                            //Nombre de vies
-                            (this.state.currentWord !== null) &&
+                        {//Nombre de vies
+                        this.state.currentWord !== null && (
                             <Heart
                                 attempt={this.state.attempt}
                                 maxAttempt={this.context.attempt}
                             />
-                        }
+                        )}
 
-                        {
-                            //Le mot à découvrir
-                            (this.state.currentWord !== null) &&
+                        {//Le mot à découvrir
+                        this.state.currentWord !== null && (
                             <CurrentWord
                                 currentWord={this.state.currentWord}
                                 usedLetter={this.state.usedLetter}
                                 win={this.state.win}
                             />
-                        }
+                        )}
 
-                        {
-                            //KEYBOARD
-                            (this.state.win === 0 && this.state.currentWord !== null) &&
-                            <Keyboard
-                                alphabet={this.state.alphabet}
-                                usedLetter={this.state.usedLetter}
-                                action={this.clickLetter}
-                            />
-                        }
+                        {//KEYBOARD
+                        this.state.win === 0 &&
+                            this.state.currentWord !== null && (
+                                <Keyboard
+                                    alphabet={this.state.alphabet}
+                                    usedLetter={this.state.usedLetter}
+                                    action={this.clickLetter}
+                                />
+                            )}
 
-                        {
-                            //WIN MESSAGE
-                            this.state.win === 1 &&
-                            <p id="win_message">WIN !!!</p>
-                        }
+                        {//WIN MESSAGE
+                        this.state.win === 1 && <p id="win_message">WIN !!!</p>}
 
-                        {
-                            //LOST MESSAGE
-                            this.state.win === -1 &&
+                        {//LOST MESSAGE
+                        this.state.win === -1 && (
                             <p id="lost_message">LOST !!!</p>
-                        }
+                        )}
 
-                        {
-                            (this.state.currentWord === null ) &&
-                            <h3>Personnalisé</h3>
+                        {this.state.currentWord === null && (
+                            <h1>PERSONNALISÉ</h1>
+                        )}
+                        {this.state.currentWord === null && (
+                            <p className="descriptionMode">
+                                Bonjour ! Bienvenue dans le mode Personnalisé.
+                                Dans ce mode, vous pouvez choisir les mots à
+                                trouver. Vous choisissez également le nombre de
+                                tentatives maximum possible.
+                            </p>
+                        )}
+                        {this.state.currentWord === null && <TakeValue />}
 
-                        }
-                        {
-                            (this.state.currentWord === null) &&
-                            <p>Bonjour ! Bienvenue dans le mode Personnalisé. Dans ce mode, vous pouvez choisir les mots à trouver. Vous choisissez également le nombre de tentatives maximum possible.</p>
-
-                        }
-                        {
-                            (this.state.currentWord === null) &&
-                            <TakeValue/>
-                        }
-
-                        {
-                            //Nouvelle partie
-                            (this.state.currentWord === null && this.context.estrempli === true) &&
-                            <button id="play_new_game" onClick={() => this.launchNewGame()}>Nouvelle partie</button>
-
-                        }
-                        {
-                            //RMots suivant
-                            (this.state.win !== 0) &&
-                            <button id="play_new_game" onClick={() => this.launchNewGame()}>Mot suivant</button>
-
-                        }
+                        {//Nouvelle partie
+                        this.state.currentWord === null &&
+                            this.context.estrempli === true && (
+                                <button
+                                    id="play_new_game"
+                                    onClick={() => this.launchNewGame()}
+                                >
+                                    NOUVELLE PARTIE
+                                </button>
+                            )}
+                        {//RMots suivant
+                        this.state.win !== 0 && (
+                            <button
+                                id="play_new_game"
+                                onClick={() => this.launchNewGame()}
+                            >
+                                MOT SUIVANT
+                            </button>
+                        )}
                     </div>
-                ) : (<App/>)}
+                ) : (
+                    <App />
+                )}
             </div>
         )
     }
 }
 
-
-export default Personnalise;
+export default Personnalise

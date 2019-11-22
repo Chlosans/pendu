@@ -149,10 +149,12 @@ class Cite extends Component {
             <div>
                 {this.state.levelType === "cite" ? (
                     <div id="game">
-                        <button onClick={() => this.homePage("App")}>
-                            Accueil
+                        <button
+                            className="btnAccueil"
+                            onClick={() => this.homePage("App")}
+                        >
+                            ACCUEIL
                         </button>
-                        <h1>Jeu du pendu</h1>
 
                         {//Nombre de vies
                         this.state.currentWord !== null && (
@@ -189,9 +191,9 @@ class Cite extends Component {
                             <p id="lost_message">LOST !!!</p>
                         )}
 
-                        {this.state.currentWord === null && <h3>Cité</h3>}
+                        {this.state.currentWord === null && <h1>CITÉ</h1>}
                         {this.state.currentWord === null && (
-                            <p>
+                            <p className="descriptionMode">
                                 Wesh gros, bienvenue dans le mode cité. Frère,
                                 si tu réussis ce jeu du pendu, on te file un
                                 grec dans le bloc 7 de Sevran. Que la graille
@@ -216,7 +218,7 @@ class Cite extends Component {
                                 id="play_new_game"
                                 onClick={() => this.launchNewGame()}
                             >
-                                Nouvelle partie
+                                NOUVELLE PARTIE
                             </button>
                         )}
                         {//RMots suivant
@@ -225,7 +227,7 @@ class Cite extends Component {
                                 id="play_new_game"
                                 onClick={() => this.launchNewGame()}
                             >
-                                Mot suivant
+                                MOT SUIVANT
                             </button>
                         )}
                     </div>
