@@ -184,8 +184,8 @@ h3 {
 
 .container {
   display: flex;
-  margin: 0 20vw;
-  justify-content: space-between;
+  margin: auto;
+  justify-content: space-around;
 }
 
 .ocean {
